@@ -1,0 +1,90 @@
+name = "cloudflare-serverless-boilerplate"
+compatibility_date = "2024-11-26"
+compatibility_flags = ["nodejs_compat"]
+send_metrics = false
+main = "src/main.ts"
+minify = true
+routes = [{ pattern = "example.com", custom_domain = true }]
+
+[placement]
+mode = "smart"
+
+[observability]
+enabled = true
+
+[vars]
+PROJECT_NAME = "cloudflare-serverless-boilerplate"
+R2_BUCKET_URL = "https://bucket.example.com"
+CORS_ORIGIN = "http://localhost:3003"
+MODE = "local"
+
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "5902df34683e4fe3b02eb99346d63a93"
+# preview_id = "5902df34683e4fe3b02eb99346d63a93"
+
+# [[r2_buckets]]
+# binding = "BUCKET"
+# bucket_name = "bucket"
+# preview_bucket_name = "bucket"
+
+# [[d1_databases]]
+# binding = "DATABASE"
+# database_name = "database"
+# database_id = "a77b295b-5cd9-4ad5-81bc-3d6f5cb085e7"
+# migrations_dir = "migrations"
+# preview_database_id = "a77b295b-5cd9-4ad5-81bc-3d6f5cb085e7"
+
+# [[durable_objects.bindings]]
+# name = "VOTE_DU"
+# class_name = "VoteDU"
+
+# [[migrations]]
+# tag = "v2"
+# new_classes = ["VoteDU"]
+
+[env.production]
+
+name = "cloudflare-serverless-boilerplate"
+compatibility_date = "2024-11-26"
+compatibility_flags = ["nodejs_compat"]
+main = "src/main.ts"
+minify = true
+routes = [{ pattern = "example.com", custom_domain = true }]
+
+[env.production.placement]
+mode = "smart"
+
+[env.production.observability]
+enabled = true
+
+[env.production.vars]
+PROJECT_NAME = "cloudflare-serverless-boilerplate"
+R2_BUCKET_URL = "https://bucket.example.com"
+CORS_ORIGIN = "https://example.com"
+MODE = "production"
+
+# [[env.production.kv_namespaces]]
+# binding = "KV"
+# id = "ba5f3dbb728449c7bdd3574dca7b9e07"
+# preview_id = "ba5f3dbb728449c7bdd3574dca7b9e07"
+
+# [[env.production.r2_buckets]]
+# binding = "BUCKET"
+# bucket_name = "bucket"
+# preview_bucket_name = "bucket"
+
+# [[env.production.d1_databases]]
+# binding = "DATABASE"
+# database_name = "database"
+# database_id = "a77b295b-5cd9-4ad5-81bc-3d6f5cb085e7"
+# preview_database_id = "a77b295b-5cd9-4ad5-81bc-3d6f5cb085e7"
+# migrations_dir = "migrations"
+
+# [[env.production.durable_objects.bindings]]
+# name = "VOTE_DU"
+# class_name = "VoteDU"
+
+# [[env.production.migrations]]
+# tag = "v1"
+# new_classes = ["VoteDU"]
