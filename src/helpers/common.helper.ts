@@ -28,11 +28,18 @@ export const getFileExtension = (filename: string) => {
   return filename.split('.').pop();
 };
 
-export function customLogger(
-  c: Context,
-  message: string,
-  type: 'info' | 'error',
-) {
+export function customLogger({
+  context,
+  message,
+  type,
+  name,
+}: {
+  context: Context;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  message?: any;
+  type: 'info' | 'error';
+  name: string;
+}): string {
   const redStart = '\x1b[31m';
   const redEnd = '\x1b[0m';
   const skyStart = '\x1b[36m';
@@ -53,14 +60,22 @@ export function customLogger(
       break;
   }
 
+  const e =
+    mightFailSync(() => JSON.stringify(message)).result === '{}' ||
+    !mightFailSync(() => JSON.stringify(message)).result
+      ? String(message)
+      : JSON.stringify(message);
+
   // eslint-disable-next-line no-console
   console[type](
-    `${color.start}[${new Date().toLocaleString('vi-VN', {
+    `${color.start}[${name} - ${new Date().toLocaleString('vi-VN', {
       timeZone: 'Asia/Ho_Chi_Minh',
     })} - (${
-      c.req.raw.cf?.city
-    }, ${c.req.raw.cf?.country})]: ${c.req.raw.method} ${c.req.raw.url} ${
-      mightFailSync(() => JSON.stringify(message)).result
+      context.req?.raw.cf?.city || ''
+    }, ${context.req?.raw.cf?.country || ''})]: ${context.req?.raw.method || ''} ${context.req?.raw.url || ''} ${
+      e
     }${color.end}`,
   );
+
+  return e;
 }

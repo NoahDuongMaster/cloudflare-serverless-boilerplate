@@ -1,6 +1,10 @@
 import { API_ROUTES } from '@/configurations/routes.configuration';
-import { API_TAGS, HTTP_METHOD, HTTP_STATUS } from '@/constants/api.constant';
-import { ZGenericResponse } from '@/schemas/common.schema';
+import {
+  API_TAGS,
+  HTTP_METHOD,
+  HTTP_STATUS,
+  ZGenericResponse,
+} from '@/constants/api.constant';
 import { createRoute, z } from '@hono/zod-openapi';
 
 import { ZPostLoginBody, ZPostLoginResponse } from './auth.schema';

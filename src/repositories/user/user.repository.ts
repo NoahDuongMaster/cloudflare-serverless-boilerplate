@@ -1,3 +1,4 @@
+import { TEnvironments } from '@/configurations/env.configuration';
 import { user } from '@/repositories/schema';
 import {
   TUserCreateDto,
@@ -7,7 +8,6 @@ import {
   ZUserCreateManyDto,
   ZUserUpdateDto,
 } from '@/repositories/user/user.schema';
-import { TEnvironments } from '@/schemas/common.schema';
 import { D1Service, TD1Service } from '@/services/d1.service';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';

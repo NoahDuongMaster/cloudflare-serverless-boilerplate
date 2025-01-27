@@ -1,3 +1,4 @@
+import { TEnvironments, TVariables } from '@/configurations/env.configuration';
 import { ERROR_MESSAGES } from '@/constants/api.constant';
 import {
   IPostLoginBody,
@@ -5,7 +6,6 @@ import {
   TJWTPayload,
 } from '@/modules/auth/auth.schema';
 import UserRepository from '@/repositories/user/user.repository';
-import { TEnvironments, TVariables } from '@/schemas/common.schema';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { sign, verify } from 'hono/jwt';

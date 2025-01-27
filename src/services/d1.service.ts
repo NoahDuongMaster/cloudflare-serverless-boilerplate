@@ -1,5 +1,5 @@
+import { TEnvironments } from '@/configurations/env.configuration';
 import * as schema from '@/repositories/schema';
-import { TEnvironments } from '@/schemas/common.schema';
 import { drizzle, DrizzleD1Database } from 'drizzle-orm/d1';
 
 export type TD1Service = DrizzleD1Database<typeof schema>;

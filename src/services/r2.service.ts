@@ -1,4 +1,4 @@
-import { TEnvironments } from '@/schemas/common.schema';
+import { TEnvironments } from '@/configurations/env.configuration';
 
 export class R2Service {
   private r2: R2Bucket;

@@ -1,3 +1,5 @@
+import { z } from '@hono/zod-openapi';
+
 export const HTTP_STATUS = {
   // 1xx: Informational
   CONTINUE: 100,
@@ -50,3 +52,32 @@ export const ERROR_MESSAGES = {
     EXPIRED_REFRESH_TOKEN: 'Refresh token is expired',
   },
 };
+
+export const ZGenericResponse = <T>(schema: z.ZodType<T>, status: number) =>
+  z.object({
+    statusCode: z
+      .number()
+      .min(100)
+      .max(599)
+      .openapi({ description: 'HTTP status code', default: status }),
+    data: schema,
+    errors: z
+      .array(
+        z.object({
+          code: z.string().openapi({ description: 'Error code' }),
+          message: z.string().openapi({ description: 'Error message' }),
+          field: z.string().optional().openapi({ description: 'Field name' }),
+        }),
+      )
+      .optional()
+      .openapi({ description: 'Error message' }),
+    message: z.string().optional().openapi({ description: 'Message' }),
+    pagination: z
+      .object({
+        page: z.number().openapi({ description: 'Current page' }),
+        limit: z.number().openapi({ description: 'Limit per page' }),
+        total: z.number().openapi({ description: 'Total pages' }),
+      })
+      .optional()
+      .openapi({ description: 'Pagination' }),
+  });

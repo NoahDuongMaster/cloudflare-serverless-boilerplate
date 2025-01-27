@@ -14,7 +14,8 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prepare": "husky || true",
-    "postinstall": "node .husky/install.mjs"
+    "postinstall": "node .husky/install.mjs",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.18.3",

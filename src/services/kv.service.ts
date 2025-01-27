@@ -1,4 +1,4 @@
-import { TEnvironments } from '@/schemas/common.schema';
+import { TEnvironments } from '@/configurations/env.configuration';
 
 export class KVService {
   private kv: KVNamespace;

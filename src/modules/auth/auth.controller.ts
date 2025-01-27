@@ -1,7 +1,7 @@
+import { TBindings } from '@/configurations/env.configuration';
 import { ZRefreshToken } from '@/configurations/jwt.configuration';
 import { ERROR_MESSAGES, HTTP_STATUS } from '@/constants/api.constant';
 import { customLogger } from '@/helpers/common.helper';
-import { TBindings } from '@/schemas/common.schema';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { Context } from 'hono';
 import { getCookie } from 'hono/cookie';
@@ -18,7 +18,12 @@ class AuthController {
 
   public postLogin() {
     return this.app.openapi(postLoginRoute, async (c) => {
-      customLogger(c as unknown as Context, this.postLogin.name, 'info');
+      customLogger({
+        context: c as unknown as Context,
+        name: this.postLogin.name,
+        type: 'info',
+        message: '',
+      });
       const authService = new AuthService(c.env);
       const body = await c.req.json();
       const parsedBody = ZPostLoginBody.safeParse(body);

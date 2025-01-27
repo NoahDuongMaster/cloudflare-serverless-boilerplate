@@ -1,11 +1,5 @@
 import { API_TAGS } from '@/constants/api.constant';
 import authController from '@/modules/auth/auth.controller';
-import {
-  TBindings,
-  TEnvironments,
-  TVariables,
-  ZEnvironmentMode,
-} from '@/schemas/common.schema';
 import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { except } from 'hono/combine';
@@ -18,6 +12,12 @@ import { secureHeaders } from 'hono/secure-headers';
 import { trimTrailingSlash } from 'hono/trailing-slash';
 import { z } from 'zod';
 
+import {
+  TBindings,
+  TEnvironments,
+  TVariables,
+  ZEnvironmentMode,
+} from './configurations/env.configuration';
 import { ZAccessToken } from './configurations/jwt.configuration';
 
 const app = new OpenAPIHono<TBindings>().basePath('/api');
